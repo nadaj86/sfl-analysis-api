@@ -9,10 +9,13 @@ COPY . /app
 
 # Install dependencies
 RUN pip install -r requirements.txt
+
+# ✅ Install the missing spaCy model
 RUN python -m spacy download en_core_web_sm
 
-# Expose API port
+# Expose the port Flask will run on
+ENV PORT=8080
 EXPOSE 8080
 
-# Start the Flask application
+# Run the application
 CMD ["python", "app.py"]
